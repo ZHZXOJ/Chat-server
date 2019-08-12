@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Chat-Server");
+    connect(&server,SIGNAL(newConnection()),this,SLOT(onNewConnection()));
 }
 
 MainWindow::~MainWindow()
@@ -17,4 +18,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionclose_triggered()
 {
     MainWindow::close();
+}
+
+void MainWindow::onNewConnection()
+{
+    QTcpSocket *socket = server.nextPendingConnection();
+
 }

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTcpSocket>
+#include <QTcpServer>
 
 namespace Ui {
 class MainWindow;
@@ -18,8 +20,12 @@ public:
 private slots:
     void on_actionclose_triggered();
 
+public slots:
+    void onNewConnection();
+
 private:
     Ui::MainWindow *ui;
+    QTcpServer server;
 };
 
 #endif // MAINWINDOW_H

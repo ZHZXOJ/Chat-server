@@ -28,6 +28,7 @@
      <string>管理</string>
     </property>
     <addaction name="actionclose"/>
+    <addaction name="actionfile"/>
    </widget>
    <addaction name="menuAdmin"/>
   </widget>
@@ -49,6 +50,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionfile">
+   <property name="text">
+    <string>文件管理</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>
