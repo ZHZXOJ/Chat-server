@@ -23,6 +23,11 @@ private slots:
 public slots:
     void onNewConnection();
 
+    void onReadReady();
+    void onConnected();
+    void onDisconnected();
+    void onError(QAbstractSocket::SocketError socketError);
+
 private:
     Ui::MainWindow *ui;
     QTcpServer server;
