@@ -243,8 +243,8 @@
     <property name="title">
      <string>管理</string>
     </property>
-    <addaction name="actionclose"/>
     <addaction name="actionfile"/>
+    <addaction name="actionclose"/>
    </widget>
    <addaction name="menuAdmin"/>
   </widget>
