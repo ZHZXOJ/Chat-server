@@ -35,6 +35,7 @@ void MainWindow::onNewConnection()
 {
     //使用这个与客户端通信
     QTcpSocket *socket = server.nextPendingConnection();
+    clients.append(socket);
 
     //连接信号和槽
     connect(socket,SIGNAL(readyRead()),
@@ -55,6 +56,13 @@ void MainWindow::onReadReady()
     QObject *obj = this->sender();
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(obj);
     QByteArray data = socket->readAll();
+
+    for (QList<QTcpSocket*>::iterator itr = clients.begin();itr != clients.end();++itr)
+    {
+        QTcpSocket *client = *itr;
+        client->write(data);
+    }
+
     qDebug() << data;
 }
 
@@ -65,6 +73,12 @@ void MainWindow::onConnected()//连接成功
 
 void MainWindow::onDisconnected()//断开
 {
+    QObject *obj = this->sender();
+    QTcpSocket *socket = qobject_cast<QTcpSocket*>(obj);
+
+    clients.removeAll(socket);
+    socket->deleteLater();
+
     qDebug() << "disconnected" ;
 }
 

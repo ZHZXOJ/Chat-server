@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include <QList>
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +32,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QTcpServer server;
+    QList<QTcpSocket*> clients;
 };
 
 #endif // MAINWINDOW_H
