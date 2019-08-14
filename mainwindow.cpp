@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bool ok = server.listen(QHostAddress::AnyIPv4,8888);
     qDebug() << "listen:" << ok;
+    if(ok)
+        ui->label_2->setText("True");
+    else
+        ui->label_2->setText("False");
 }
 
 MainWindow::~MainWindow()
