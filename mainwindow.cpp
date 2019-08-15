@@ -15,10 +15,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bool ok = server.listen(QHostAddress::AnyIPv4,8888);
     qDebug() << "listen:" << ok;
+
     if(ok)
-        ui->label_2->setText("True");
+        ui->label_2->setText("True"),ui->textEdit->append("listen: True");
     else
-        ui->label_2->setText("False");
+        ui->label_2->setText("False"),ui->textEdit->append("listen: False");
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +37,7 @@ void MainWindow::onNewConnection()
     //使用这个与客户端通信
     QTcpSocket *socket = server.nextPendingConnection();
     clients.append(socket);
+    ui->label_4->setText(QString('0'+clients.size()));
 
     //连接信号和槽
     connect(socket,SIGNAL(readyRead()),
@@ -69,6 +71,7 @@ void MainWindow::onReadReady()
 void MainWindow::onConnected()//连接成功
 {
     qDebug() << "connected" ;
+    ui->textEdit->append("Connected");
 }
 
 void MainWindow::onDisconnected()//断开
@@ -79,10 +82,13 @@ void MainWindow::onDisconnected()//断开
     clients.removeAll(socket);
     socket->deleteLater();
 
+    ui->label_4->setText(QString('0'+clients.size()));
+    ui->textEdit->append("Disconnected");
     qDebug() << "disconnected" ;
 }
 
 void MainWindow::onError(QAbstractSocket::SocketError socketError)//错误
 {
     qDebug() << "error:" << socketError;
+    ui->textEdit->append("Error");
 }
