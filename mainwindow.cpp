@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <QHostAddress>
+#include <QDataStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -57,15 +58,36 @@ void MainWindow::onReadReady()
 {
     QObject *obj = this->sender();
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(obj);
-    QByteArray data = socket->readAll();
 
-    for (QList<QTcpSocket*>::iterator itr = clients.begin();itr != clients.end();++itr)
-    {
-        QTcpSocket *client = *itr;
-        client->write(data);
-    }
+    quint64 sizeNow =0;
+    do{
+        sizeNow = socket->bytesAvailable();
+        if(sizeNow < sizeof (quint32))
+        {
+            return;
+        }
 
-    qDebug() << data;
+        QDataStream stream(socket);
+        quint32 sizePack = 0;
+        stream >> sizePack;
+        if(sizeNow >= sizePack - 4)
+        {
+            qDebug()<<"full pack";
+            QByteArray dataFull;
+            stream >> dataFull;
+            sizeNow = socket->bytesAvailable();
+
+            for (QList<QTcpSocket*>::iterator itr = clients.begin();itr != clients.end();++itr)
+            {
+                QTcpSocket *client = *itr;
+
+                client->write(dataFull);
+            }
+
+            qDebug() << dataFull;
+        }
+    }while (sizeNow>0);
+
 }
 
 void MainWindow::onConnected()//连接成功
