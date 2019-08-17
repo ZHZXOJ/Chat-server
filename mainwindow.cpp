@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&server,SIGNAL(newConnection()),
             this,SLOT(onNewConnection()));
 
+    sizePackLast=0;
     bool ok = server.listen(QHostAddress::AnyIPv4,8888);
     qDebug() << "listen:" << ok;
 
@@ -62,26 +63,38 @@ void MainWindow::onReadReady()
     quint64 sizeNow =0;
     do{
         sizeNow = socket->bytesAvailable();
-        if(sizeNow < sizeof (quint32))
-        {
-            return;
-        }
 
         QDataStream stream(socket);
-        quint32 sizePack = 0;
-        stream >> sizePack;
-        if(sizeNow >= sizePack - 4)
+
+        if(sizePackLast == 0)
+        {
+            if(sizeNow < sizeof (quint32))
+            {
+                return;
+            }
+
+            stream >> sizePackLast;
+        }
+        qDebug()<<sizePackLast;
+        if(sizeNow >= sizePackLast - 4)
         {
             qDebug()<<"full pack";
             QByteArray dataFull;
             stream >> dataFull;
             sizeNow = socket->bytesAvailable();
 
+            QByteArray dataSend;
+            QDataStream stream(&dataSend,QIODevice::WriteOnly);
+            stream << (quint32)0 << dataFull;
+            stream.device()->seek(0);
+            stream << dataSend.size();
+            qDebug()<<dataSend;
+
             for (QList<QTcpSocket*>::iterator itr = clients.begin();itr != clients.end();++itr)
             {
                 QTcpSocket *client = *itr;
 
-                client->write(dataFull);
+                client->write(dataSend);
             }
 
             qDebug() << dataFull;

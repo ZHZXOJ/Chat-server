@@ -33,6 +33,8 @@ private:
     Ui::MainWindow *ui;
     QTcpServer server;
     QList<QTcpSocket*> clients;
+
+    quint32 sizePackLast;
 };
 
 #endif // MAINWINDOW_H
