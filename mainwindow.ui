@@ -6,59 +6,158 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>630</width>
-    <height>300</height>
+    <width>728</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Chat_server</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QScrollBar" name="verticalScrollBar">
+   <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>30</y>
+      <x>290</x>
+      <y>0</y>
       <width>16</width>
-      <height>211</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_10">
+   <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>51</width>
+      <x>0</x>
+      <y>350</y>
+      <width>751</width>
       <height>16</height>
      </rect>
     </property>
-    <property name="text">
-     <string>日志信息</string>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>201</width>
-      <height>22</height>
+      <width>271</width>
+      <height>331</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1,2">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="10,1,10,1,100">
      <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>当前客户端数</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,10">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>在线人数</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <spacer name="horizontalSpacer_4">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,10">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>端口</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>NULL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>711</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="50,1,10">
+     <item>
+      <widget class="QTextEdit" name="textEdit_2"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -71,62 +170,48 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>0</string>
+        <string>控制</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>201</width>
-      <height>22</height>
+      <x>310</x>
+      <y>10</y>
+      <width>411</width>
+      <height>341</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,1,2">
+    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,1,100">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>监听状态</string>
+        <string>用户列表</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_5">
+      <spacer name="verticalSpacer_3">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>20</width>
+         <height>40</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>False</string>
-       </property>
-      </widget>
+      <widget class="QTextEdit" name="textEdit_3"/>
      </item>
     </layout>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>591</width>
-      <height>171</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -134,18 +219,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>630</width>
+     <width>728</width>
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuAdmin">
-    <property name="title">
-     <string>管理</string>
-    </property>
-    <addaction name="actionfile"/>
-    <addaction name="actionclose"/>
-   </widget>
-   <addaction name="menuAdmin"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -156,25 +233,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionclose">
-   <property name="text">
-    <string>关闭程序</string>
-   </property>
-   <property name="toolTip">
-    <string>关闭程序</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
-   </property>
-  </action>
-  <action name="actionfile">
-   <property name="text">
-    <string>文件管理</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+F</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
